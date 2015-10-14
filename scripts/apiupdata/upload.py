@@ -12,7 +12,7 @@ sys.setdefaultencoding('utf-8')
 
 #选择测试（从测试图片目录随机选择多张图片）
 def chosePic(number):
-    pic_list = glob.glob('E:\\testpic\\*.jpg')
+    pic_list = glob.glob('F:\\tmp\\images\\meizitu\\*.jpg')
     up_pic = random.sample(pic_list, number)
     return up_pic
 
@@ -49,6 +49,7 @@ def sendYue(account, content, startTime, endTime, lat, lng, address, isNearVisib
     send_url = add + '?' + args
     try:
         req = requests.post(send_url)
+        print req.url, req.status_code
         return req.json()
     except Exception, e:
         print e
@@ -61,7 +62,7 @@ if __name__ == "__main__":
     where = open('coordinate', 'r').readlines()
     position = [x.strip().split('\t') for x in where if x!='']
     content_all = open('content', 'r').read()
-    for x in range(180):
+    for x in range(1000):
         account = account_list[x].strip()
         address = position[x][0]
         lng = position[x][1]
